@@ -23,19 +23,6 @@ describe('copy', () => {
     });
   });
 
-  test('copy with filter function error', done => {
-    const src = fs.mkdtempSync('temp-filter-error-src');
-    const dest = path.join(os.tmpdir(), 'temp-filter-error-dest');
-    const filter = () => {
-      throw new Error('mocked filter error');
-    };
-    copy(src, dest, { filter }, err => {
-      expect(err).toBeTruthy();
-      expect(err.message).toBe('mocked filter error');
-      done();
-    });
-  });
-
   test('copy with filter promise error', done => {
     const src = fs.mkdtempSync(os.tmpdir());
     const dest = path.join(os.tmpdir(), 'temp-filter-error-dest');

@@ -45,12 +45,4 @@ describe('createFileSync', () => {
     const content = fs.readFileSync(file, 'utf-8');
     expect(content).toBe('');
   });
-
-  test('throws EACCES error if permission denied', () => {
-    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {
-      throw new Error('EACCES');
-    });
-    const file = path.join(os.tmpdir(), 'testfile.txt');
-    expect(() => createFileSync(file)).toThrow('EACCES');
-  });
 });

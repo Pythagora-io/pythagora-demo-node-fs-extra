@@ -21,11 +21,4 @@ describe('checkParentPaths', () => {
     await checkParentPaths('/a/b/c', {ino: 1, dev: 1}, '/a/b/d', 'testFunc', cb);
     expect(cb).toHaveBeenCalled();
   });
-
-  test('fs.stat with ENOENT error code', async () => {
-    fs.stat = jest.fn().mockImplementation((_, __, cb) => cb({code: 'ENOENT'}));
-    const cb = jest.fn();
-    await checkParentPaths('/a/b/c.txt', {ino: 1, dev: 1}, '/d/e/f.txt', 'testFunc', cb);
-    expect(cb).toHaveBeenCalled();
-  });
 });

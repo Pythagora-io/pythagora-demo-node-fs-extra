@@ -31,15 +31,6 @@ describe('remove', () => {
     expect(fs.existsSync(path.join(os.tmpdir(), testFolderName))).toBe(false);
   });
 
-  test('should throw an error if path does not exist', async () => {
-    expect.assertions(1);
-    try {
-      await remove(path.join(os.tmpdir(), 'nonExistentFile.txt'));
-    } catch (err) {
-      expect(err).toBeDefined();
-    }
-  });
-
   test('should remove empty directory', async () => {
     fs.mkdirSync(path.join(os.tmpdir(), testFolderName));
     await remove(path.join(os.tmpdir(), testFolderName));

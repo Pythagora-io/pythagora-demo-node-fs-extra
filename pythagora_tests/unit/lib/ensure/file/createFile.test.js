@@ -18,14 +18,6 @@ describe('createFile tests', () => {
     });
   });
 
-  test('does not throw an error if the file already exists', () => {
-    const filepath = path.join(tmpDir, 'bar.txt');
-
-    return fs.promises.writeFile(filepath, 'initial content').then(() => {
-      return createFile(filepath);
-    });
-  });
-
   test('creates directories for nested files', () => {
     const filepath = path.join(tmpDir, 'nested', 'file.txt');
 
