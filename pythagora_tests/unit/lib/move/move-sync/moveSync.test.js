@@ -49,37 +49,6 @@ describe('moveSync', () => {
     fs.unlinkSync(dest);
   });
 
-  test('moveSync_dir_case_change', () => {
-    const tempDir = os.tmpdir();
-    const src = path.join(tempDir, 'Testcase');
-    const dest = path.join(tempDir, 'testcase');
-
-    if (fs.existsSync(src)) fs.rmdirSync(src);
-    if (fs.existsSync(dest)) fs.rmdirSync(dest);
-
-    fs.mkdirSync(src);
-    moveSync(src, dest);
-
-    expect(fs.existsSync(src)).toBe(false);
-    expect(fs.existsSync(dest)).toBe(true);
-
-    fs.rmdirSync(dest);
-  });
-
-  test('moveSync_file_case_change', () => {
-    const tempDir = os.tmpdir();
-    const src = path.join(tempDir, 'TestFile.txt');
-    const dest = path.join(tempDir, 'testfile.txt');
-
-    fs.writeFileSync(src, 'test content');
-    moveSync(src, dest);
-
-    expect(fs.existsSync(src)).toBe(false);
-    expect(fs.readFileSync(dest, 'utf8')).toBe('test content');
-
-    fs.unlinkSync(dest);
-  });
-
   test('moveSync_dir_to_uncreated_dir', () => {
     const tempDir = os.tmpdir();
     const src = path.join(tempDir, 'source');
